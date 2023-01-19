@@ -9,7 +9,6 @@ import Foundation
 
 enum ExpressionParser {
     static func parse(from input: String) -> Formula {
-//        let eachPair = componentsByOperators(from: input)
         var 연산자들 = CalculatorItemQueue<Operator>()
         input.compactMap { Operator(rawValue: $0) }
              .forEach { 연산자들.enqueue(item: $0) }
@@ -22,7 +21,6 @@ enum ExpressionParser {
     }
     
     private static func componentsByOperators(from input: String) -> [String] {
-        //input.split(with: " ")
         input.components(separatedBy: ["+", "−", "÷", "×"])
     }
 }
