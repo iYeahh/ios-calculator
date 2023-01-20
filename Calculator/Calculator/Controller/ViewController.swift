@@ -7,8 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var 연산자Q: CalculatorItemQueue<Operator> = CalculatorItemQueue()
-    var 피연산자Q: CalculatorItemQueue<Double> = CalculatorItemQueue()
     var 임시list낱개: InputPair = InputPair()
     var 임시list모음: [String] = []
     var 계산결과: Double?    //nil이면(= 켜자마자 `=`부터 누르면) 에러 or 0
@@ -21,18 +19,18 @@ class ViewController: UIViewController {
     // 숫자or기호 버튼 눌리면
     func newList(/*button: 버튼종류로switch*/) {
         // 연산자 버튼이면
-        guard 임시list낱개.피연산자.isEmpty else {
+        guard 임시list낱개.피연산자isEmpty() else {
             임시list모음.append(임시list낱개.makePair())
             임시list낱개 = InputPair()
             return
         }
-        임시list낱개.연산자 = "연"
+        임시list낱개.change연산자(to: "+")
         
         // 부호 버튼이면
-        임시list낱개.is양수 = false //토글
+        임시list낱개.toggle부호()
         
         // 숫자, 점 버튼이면
-        임시list낱개.피연산자.append("1")
+        임시list낱개.add피연산자(new숫자: "1")
     }
 
     // 끝(=) 버튼 눌리면
@@ -57,6 +55,7 @@ class ViewController: UIViewController {
         임시list낱개 = InputPair()
         임시list모음 = []
         계산결과 = nil
+        //포뮬라는 스택에 있어어 지울 필요 x
     }
 }
 
