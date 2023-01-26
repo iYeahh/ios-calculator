@@ -12,7 +12,7 @@ struct TemporaryInput {
     private var partialOperands: [String] = []
     private var isPositive: Bool = true
 
-    func partailOperandsIsEmpty() -> Bool {
+    func partialOperandsIsEmpty() -> Bool {
         partialOperands.isEmpty
     }
 
